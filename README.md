@@ -1,2 +1,2 @@
 # ImageRecognition
-Final Project
+Final Project - Theodore da Cunha
