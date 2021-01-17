@@ -21,6 +21,7 @@ drive.mount('/content/gdrive')
 
 """Loading Dataset"""
 
+#The website that helped me: https://towardsdatascience.com/a-simple-2d-cnn-for-mnist-digit-recognition-a998dbc1e79a
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 print(test_labels.shape)
 train_labels = keras.utils.to_categorical(train_labels, 10)
@@ -39,7 +40,7 @@ test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
   print("The model has a loss of {} \nThe model is {}% accurate".format(eval[0], round(eval[1]*100)))
   return new_model
 
-#Loading Camera
+#Loading Camera (code provided by Google Collab, I added new functionalities such as image pre-processing)
 from IPython.display import display, Javascript
 from google.colab.output import eval_js
 from base64 import b64decode
