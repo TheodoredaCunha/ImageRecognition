@@ -63,8 +63,8 @@ print(train_labels[0])
 print(type(train_labels))
 good_enough = False
 while not good_enough:
-  moodel.fit(train_images, train_labels, epochs = 12, batch_size = 128, verbose = 1, validation_data = (test_images, test_labels))
-  if moodel.evaluate(test_images, test_labels, verbose = 0)[1] > 0.90:
+  moodel.fit(train_images, train_labels, epochs = 1, batch_size = 128, verbose = 1, validation_data = (test_images, test_labels))
+  if moodel.evaluate(test_images, test_labels, verbose = 0)[1] > 0.85:
     good_enough = True
 
 #Evaluate Model
@@ -154,6 +154,8 @@ def take_photo(filename='photo.jpg', quality=0.8):
         current.append([j])
     fixed.append(current)
   return fixed
+
+"""Testing Neural Network with Webcam"""
 
 resized = take_photo()
 photo = []
