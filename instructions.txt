@@ -1,0 +1,4 @@
+Instructions:
+1. Run the .ipynb files in Google Colab
+2. Place the extracted ImageRecognition folder in your GDrive
+3. Run the ModelBuilder if you want to see how the model was made. Run the MainProgram if you want to run tge main program
