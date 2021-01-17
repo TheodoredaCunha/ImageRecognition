@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 print(test_images.shape)
 
+#The website that helped me: https://towardsdatascience.com/a-simple-2d-cnn-for-mnist-digit-recognition-a998dbc1e79a
 train_labels = keras.utils.to_categorical(train_labels, 10)
 train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
 
@@ -40,9 +41,11 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
 #class_names = [0, 1,2,3,4,5,6,7,8,9]
 
 #making the model
+#The website that helped me: https://towardsdatascience.com/a-simple-2d-cnn-for-mnist-digit-recognition-a998dbc1e79a
 moodel = Sequential()
 moodel.add(Conv2D(32, kernel_size = (3,3), activation = "relu", input_shape = (28, 28, 1)))
 moodel.add(Conv2D(64, (3, 3), activation='relu'))
+moodel.add(MaxPooling2D(pool_size = (2,2)))
 moodel.add(MaxPooling2D(pool_size = (2,2)))
 moodel.add(Dropout(0.50))
 moodel.add(Flatten())
@@ -60,7 +63,7 @@ print(train_labels[0])
 print(type(train_labels))
 good_enough = False
 while not good_enough:
-  moodel.fit(train_images, train_labels, epochs = 20, batch_size = 128, verbose = 1)
+  moodel.fit(train_images, train_labels, epochs = 12, batch_size = 128, verbose = 1, validation_data = (test_images, test_labels))
   if moodel.evaluate(test_images, test_labels, verbose = 0)[1] > 0.90:
     good_enough = True
 
