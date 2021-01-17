@@ -58,13 +58,17 @@ moodel.compile(loss = "categorical_crossentropy", optimizer = "adam", metrics = 
 moodel.summary()
 
 #Training the model
-print(train_images[0])
-print(train_labels[0])
-print(type(train_labels))
+EPOCHS = int(input("epochs: "))
+THRESHOLD = int(input("accuracy threshold (out of 100%): "))
+while THRESHOLD > 100:
+  print("accuracy threshold must be below 100%")
+  THRESHOLD = int(input("accuracy threshold (out of 100%): "))
+
+THRESHOLD = THRESHOLD / 100
 good_enough = False
 while not good_enough:
-  moodel.fit(train_images, train_labels, epochs = 1, batch_size = 128, verbose = 1, validation_data = (test_images, test_labels))
-  if moodel.evaluate(test_images, test_labels, verbose = 0)[1] > 0.85:
+  moodel.fit(train_images, train_labels, epochs = EPOCHS, batch_size = 128, verbose = 1, validation_data = (test_images, test_labels))
+  if moodel.evaluate(test_images, test_labels, verbose = 0)[1] > THRESHOLD:
     good_enough = True
 
 #Evaluate Model
@@ -177,7 +181,7 @@ drive.mount('/content/gdrive')
 
 moodel.save("/content/gdrive/MyDrive/ImageRecognition/fp_model/")
 
-moodel.save("/content/gdrive/MyDrive/ImageRecognition/h5/my_model.h5")
+"""Test Re-Load Model"""
 
 from keras.models import load_model
 new_model = load_model("/content/gdrive/MyDrive/ImageRecognition/model/")
